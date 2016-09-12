@@ -103,3 +103,9 @@ ENV/
 .idea/vcs.xml
 
 .idea/scopes/scope_settings.xml
+
+*.png
+
+*.wav
+
+*.data
