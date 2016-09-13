@@ -109,3 +109,6 @@ ENV/
 *.wav
 
 *.data
+hw01/submit/*
+
+hw01/problem6/tweets.txt

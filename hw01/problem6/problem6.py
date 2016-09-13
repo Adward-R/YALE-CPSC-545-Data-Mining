@@ -46,8 +46,8 @@ def cons_corr_matrix(A):
 def compute_pairs(C, terms):
     pairs = []
     for i in range(9):
-        max_index = 0
-        for j in range(1, 9):
+        max_index = 0 if i else 1
+        for j in range(9):
             if j != i:
                 if C[i][j] > C[i][max_index]:
                     max_index = j
