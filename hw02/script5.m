@@ -30,16 +30,17 @@ n = 2;
 x = 10.*rand(m,1);
 theta = pi/4;
 X = [x.*cos(theta) x.*sin(theta)];
-X = imnoise(X, 'gaussian', 0.2, 0.2);
+% X = imnoise(X, 'gaussian', 0.2, 0.2);
+X = X + randn(1000, 2);
 % plot(X(:,1), X(:,2), '.', 'MarkerSize', 30);
 
 % Part B: Mahalanobis and Principal Components
 means = mean(X);
-Cov = (n-1)^(-1) * X' * X;
+Sigma = (n-1)^(-1) * X' * X;
 dist2mean = zeros(m, 1);
 for i = 1:m,
     tmp = X(i, :) - means;
-    dist2mean(i) = (tmp * Cov * tmp').^0.5;
+    dist2mean(i) = (tmp * inv(Sigma) * tmp').^0.5;
 end
 % D = (X * Cov * X').^0.5;
 
