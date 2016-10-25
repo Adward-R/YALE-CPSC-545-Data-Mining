@@ -1,0 +1,17 @@
+Class               Values
+                    1       2       3       4       
+Will wait           No      Yes     
+
+
+Attributes          Values
+                    1       2       3       4       
+Alternate Nearby    No      Yes     
+Has Bar             No      Yes     
+Friday/Saturday     No      Yes     
+Hungry              No      Yes     
+How Crowded         Full    None    Some    
+Price               $       $$      $$$     
+Raining             No      Yes     
+Reservations        No      Yes     
+Type                Burger  French  Italian Thai    
+Waiting time        0-10    10-30   30-60   >60     
