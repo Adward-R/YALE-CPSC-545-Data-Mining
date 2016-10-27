@@ -1,0 +1,48 @@
+Class                      Value
+Quercus suber              1
+Salix atrocinera           2
+Populus nigra              3
+Alnus sp.                  4
+Quercus robur              5
+Crataegus monogyna         6
+Ilex aquifolium            7
+Nerium oleander            8
+Betula pubescens           9
+Tilia tomentosa            10
+Acer palmatum              11
+Celtis sp.                 12
+Corylus avellana           13
+Castanea sativa            14
+Populus alba               15
+Primula vulgaris           16
+Erodium sp.                17
+Bougainvillea sp.          18
+Arisarum vulgarea          19
+Euonymus japonicus         20
+Ilex perado ssp. azorica   21
+Magnolia soulangeana       22
+Buxus sempervirens         23
+Urtica dioica              24
+Podocarpus sp.             25
+Acca sellowianaa           26
+Hydrangea sp.              27
+Pseudosasa japonica        28
+Magnolia grandiflora       29
+Geranium sp.               30
+
+
+Attributes
+Eccentricity
+Aspect Ratio
+Elongation
+Solidity
+Stochastic Convexity
+Isoperimetric Factor
+Maximal Indentation Depth
+Lobedness
+Average Intensity
+Average Contrast
+Smoothness
+Third moment
+Uniformity
+Entropy
