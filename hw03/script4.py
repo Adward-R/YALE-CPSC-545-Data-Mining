@@ -7,7 +7,7 @@ from numpy import argsort, reshape, array, log2, zeros, transpose
 
 def script4():
     # all attr are categorical
-    data = load('restaurant.mat')
+    data = load('restaurant_1.mat')
     # [c] is an mx1 vector of int corrspd to the class labels for each of the m samples
     c = array(data['c']).astype(int)
     # [nc] is the number of classes, that is, c(i) belongs to {1,...,nc} for i = 1,...,m
@@ -23,6 +23,7 @@ def script4():
     d = array(data['d']).astype(int)
 
     tr = tree_train(c, nc, x, nx)
+    print(tr)
     b = tree_classify(y, tr)
 
     your_output = b
@@ -71,7 +72,11 @@ def tree_train(c, nc, x, nx):
             info_gain = entropy(_c)
             for k in range(nx[j]):
                 cj = _c[_x[:, j] == k+1]
-                info_gain -= (len(cj) / len(_c)) * entropy(cj)
+                try:
+                    info_gain -= (len(cj) / len(_c)) * entropy(cj)
+                except:
+                    # return default label to bypass the divide-by-zero exception cause by empty node problem
+                    return [_c[0], 0]
             # > rather than >= guarantees if multi attr has the same info_gain, the first will apply
             if info_gain > max_info_gain:
                 max_j = j
