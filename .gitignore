@@ -112,3 +112,6 @@ ENV/
 hw01/submit/*
 
 hw01/problem6/tweets.txt
+
+04_svm_clustering/libsvm-3.21/*
+04_svm_clustering/*.png

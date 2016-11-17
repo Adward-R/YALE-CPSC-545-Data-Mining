@@ -1,7 +1,6 @@
 function script6
 
     % Test DBScan on unlabeled data
-    %{
     data = load('clusters1.mat');
     x = data.x;
     x = x(randperm(size(x, 1)), :);
@@ -27,8 +26,10 @@ function script6
     scatter(x(:, 1), x(:, 2), 30, point_type);
     title('Colored by Point-types, Eps=0.3%');
     print('6-4', '-dpng');
-    %}
 
+    close all;
+
+    % Test DBScan on labeled real data
     data = load('clusters2.mat');
     x = data.x;
     c = data.c;
