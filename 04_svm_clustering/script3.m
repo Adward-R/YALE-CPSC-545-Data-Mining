@@ -41,8 +41,13 @@ function script3
     hold all;
     plot(y(chat==1, 1), y(chat==1, 2), 'bo');
     plot(y(chat==-1, 1), y(chat==-1, 2), 'ro');
-    sup_vec_ind = abs(Md.v) > 0.001;
-    scatter(y(sup_vec_ind, 1), y(sup_vec_ind, 2), 50, 'k', 'filled');
+    w = x' * Md.v;  % col vec
+    svs = zeros(20^2,1);
+    for width = [-1, 1],
+        f = @(t) (Md.b + width - w(1) * t) / w(2);
+        svs = svs | (abs(f(y(:, 1)) - y(:, 2)) < 0.01);
+    end
+    scatter(y(svs, 1), y(svs, 2), 50, 'k', 'filled');
     title('Quadratic Kernel SVM 1');
     print('3-2', '-dpng');
     hold off;
