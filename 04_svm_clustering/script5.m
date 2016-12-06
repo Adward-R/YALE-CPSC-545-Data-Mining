@@ -45,7 +45,7 @@ function kmeans_example()
         [C, M, ~, ~] = KmeanClustering(x, k);
         RI(i_round) = RandIndex(c, C);
         ACC(i_round) = ClusterAccuracy(k, c, C);
-        SSE(i_round) = TotalSSE(C, M);
+        SSE(i_round) = TotalSSE(C, M, x);
     end
 
     histogram(ACC, 4);
@@ -124,21 +124,26 @@ end
 
 % num of expected labels, actual labels, predicted labels
 function [acc] = ClusterAccuracy(k, labels, C)
-    label_map = zeros(k, 1);
-    for j = 1:k,
-        label_map(j) = mode(labels(C == j));
+    % label_map = zeros(k, 1);
+    % for j = 1:k,
+    %     label_map(j) = mode(labels(C == j));
+    % end
+    label_maps = perms(unique(labels));
+    accs = zeros(size(label_maps, 1), 1);
+    for i = 1:size(label_maps, 1),
+        C_mapped = arrayfun(@(t) label_maps(i, t), C);
+        accs(i) = sum(labels == C_mapped) / length(C);
     end
-    C_mapped = arrayfun(@(t) label_map(t), C);
-    acc = sum(labels == C_mapped) / length(C);
+    acc = max(accs);
     return
 end
 
 % clusters and centroids, without original labels
-function [sse] = TotalSSE(C, M)
+function [sse] = TotalSSE(C, M, x)
     sse = 0;
     k = size(M, 1);
-    for i = 1:k,
-        sse = sse + sqrt(sum((C(i) - M(C(i))).^2));
+    for i = 1:size(x, 1),
+        sse = sse + sum((x(i, :) - M(C(i))).^2);
     end
     return
 end

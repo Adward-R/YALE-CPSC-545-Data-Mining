@@ -78,6 +78,7 @@ function Md = svm_train(c,x,kh)
     ub = inf(N, 1);
 
     lambda = quadprog(H, f, A, b, Aeq, beq, lb, ub);
+    size(lambda)
 
     bias = 0;
     non_zeros = 0;

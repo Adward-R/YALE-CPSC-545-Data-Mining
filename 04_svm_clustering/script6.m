@@ -18,6 +18,7 @@ function script6
     print('6-2', '-dpng');
 
     epsilon = pctl(reshape(D, [N^2, 1]), 0.3);
+    epsilon
     min_pts = pctl(sum(D <= epsilon, 2), 10);
     [C, point_type] = dbscan(x, min_pts, epsilon, @pdist2);
     scatter(x(:, 1), x(:, 2), 30, C);
