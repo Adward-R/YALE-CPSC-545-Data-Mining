@@ -68,9 +68,13 @@ print('pca_coordinates.png','-dpng');
 
 % 10
 D = pdist2(X, X);
-B = -1/2 * J * D * J;
-[U, D, V] = svd(B);
-Y = U * D.^0.5;
+B = -1/2 * J * D.^2 * J;
+[U, S, V] = svd(B);
+% Force the first coordinate of each vector to be positive.
+for i = 1:m
+    U(i, 3) = - U(i, 3);
+end
+Y = U * S.^0.5;
 
 % 11
 figure;

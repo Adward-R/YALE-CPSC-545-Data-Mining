@@ -23,12 +23,13 @@
 %   
 clear all; close all; clc; 
 % Seed the random number generator to you favorite integer, e.g., rng(213);
+rng(2);
 
 % Part A: Data Generation
 m = 1000;
 n = 2;
 x = 10.*rand(m,1);
-theta = pi/4;
+theta = pi / 6; % rand() * pi;
 X = [x.*cos(theta) x.*sin(theta)];
 % X = imnoise(X, 'gaussian', 0.2, 0.2);
 X = X + randn(1000, 2);
@@ -44,8 +45,8 @@ for i = 1:m,
 end
 % D = (X * Cov * X').^0.5;
 
-X_hat = X - (1/n) * ones(m, 1) * ones(1, m) * X;  % mean extraction
-Cov = (n-1)^(-1) * (X_hat' * X_hat);
+X_hat = X - (1/m) * ones(m, 1) * ones(1, m) * X;  % mean extraction
+Cov = (m-1)^(-1) * (X_hat' * X_hat);
 [U, S, V] = svd(Cov);
 % obtain eigenvectors
 fai1 = U(:, 1);
@@ -55,7 +56,10 @@ lambda1 = S(1, 1);
 lambda2 = S(2, 2);
 
 % Part C: Visualization
+fai1 = lambda1.^0.5 * fai1;
+fai2 = lambda2.^0.5 * fai2;
 scatter(X(:, 1), X(:, 2), 9, dist2mean, 'filled');
 hold on;
-quiver(lambda1^0.5 * fai1, lambda2^0.5 * fai2, 'k', 'LineWidth', 4);
+quiver(means(1), means(2), fai1(1), fai1(2), 'k', 'LineWidth', 4);
+quiver(means(1), means(2), fai2(1), fai2(2), 'k', 'LineWidth', 4);
 print('mahal_pca_illustration', '-dpng');

@@ -19,7 +19,7 @@ clear all; close all; clc
 load('nycity.mat');  % D, c
 n = length(c);
 J = eye(n) - (1/n) * ones(n, 1) * ones(1, n);
-B = -0.5 * J * D * J;
+B = -0.5 * J * D.^2 * J;
 [U, S, V] = svd(B);
 X = U(:, 1:2) * (S(1:2, 1:2).^0.5);
 
